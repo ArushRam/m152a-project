@@ -36,7 +36,7 @@ module top(
 	output wire [2:0] blue,	    // blue vga output - 3 bits
 	output wire hsync,		    // horizontal sync out
 	output wire vsync,		    // vertical sync out
-    ouptut wire player1_turn,   // LED
+    output wire player1_turn,   // LED
     output wire player2_turn    // LED
 );
 
