@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module win_checker(
-    input wire [2:0] game_board [0:4][0:4],
+    input wire [1:0] game_board [0:4][0:4],
     input wire [1:0] player_id,
     output wire player_won,
 );
