@@ -77,7 +77,7 @@ module top(
 
     // 4. Game Management
     // declare game variables
-    wire [2:0] game_board [0:4][0:4];
+    wire [1:0] game_board [0:4][0:4];
     reg [2:0] cursor_row;
     reg [2:0] cursor_col;
 
@@ -92,7 +92,7 @@ module top(
         clk_display, game_board, cursor_row, cursor_col,
         // outputs
         hsync, vsync, red, green, blue
-    )
+    );
 
 
 endmodule

@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 module vga_display(
 	input wire clk_display,			            // asynchronous reset
-    input wire [2:0] game_state [0:4][0:4],     // game board
+    input wire [1:0] game_state [0:4][0:4],     // game board
     input wire [2:0] cursor_row,                // cursor row position
     input wire [2:0] cursor_col,                // cursor col position
 	output wire hsync,		                    // horizontal sync out
