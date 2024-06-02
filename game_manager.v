@@ -43,11 +43,17 @@ module game_manager(
     board_manager manage_board(resetGame, currentPlayer, placeMarker, cursor_row, cursor_col, game_board);
 
     // Check if current player has won
-    win_checker check_win(game_board, player_id, curPlayerWon);
+    win_checker check_win(game_board, currentPlayer, curPlayerWon);
 
-    // TODO: update lastWinner based on who won the game, if game did finish (indicated by curPlayerWon)
-    // TODO: if game finished and user presses placeMarker, reset game and set curPlayerWon to 0
-    // TODO: if resetGame pressed, reset game and set curPlayerWon to 0
-
+    // update last winner if game ended
+    reg lastWinner_reg;
+    always @(curPlayerWon) begin
+        if (currentPlayer == b'01) begin
+            lastWinner_reg <= 0;
+        end else if (currentPlayer == b'10) begin
+            lastWinner_reg <= 1;
+        end
+    end
+    assign lastWinner = lastWinner_reg;
 
 endmodule

@@ -35,6 +35,7 @@ module turn_manager(
 
     always @(*) begin
         if (resetGame) begin
+            // set current player to last loser if game is reset
             if (lastWinner == 0) begin
                 currentPlayer <= 0b'10;
             end

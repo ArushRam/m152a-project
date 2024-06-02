@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module top(
-	input wire clk,			//master clock = 100MHz
+    input wire clk,			//master clock = 100MHz
     input wire btnL,
     input wire btnR,
     input wire btnU,
@@ -29,13 +29,13 @@ module top(
     input wire resetGameSwitch,
     input wire resetMatchSwitch,
 
-	output wire [6:0] seg,	    // 7-segment display LEDs
-	output wire [3:0] an,	    // 7-segment display anode enable
-	output wire [2:0] red,	    // red vga output - 3 bits
-	output wire [2:0] green,    // green vga output - 3 bits
-	output wire [2:0] blue,	    // blue vga output - 3 bits
-	output wire hsync,		    // horizontal sync out
-	output wire vsync,		    // vertical sync out
+    output wire [6:0] seg,	    // 7-segment display LEDs
+    output wire [3:0] an,	    // 7-segment display anode enable
+    output wire [2:0] red,	    // red vga output - 3 bits
+    output wire [2:0] green,    // green vga output - 3 bits
+    output wire [2:0] blue,	    // blue vga output - 3 bits
+    output wire hsync,		    // horizontal sync out
+    output wire vsync,		    // vertical sync out
     output wire player1_turn,   // LED
     output wire player2_turn    // LED
 );

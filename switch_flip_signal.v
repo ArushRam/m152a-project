@@ -24,23 +24,23 @@ module switch_flip_signal(
     output wire changeSignal
 );
 
-reg changeSignal_tmp;
-reg previousValue;
+    reg changeSignal_tmp;
+    reg previousValue;
 
-initial begin
-    changeSignal_tmp <= 0;
-    previousValue <= switchValue;
-end
-
-always @(*) begin
-    if (switchValue != previousValue) begin
-        previousValue <= switchValue;
-        changeSignal_tmp <= 1;
-    end
-    else begin
+    initial begin
         changeSignal_tmp <= 0;
+        previousValue <= switchValue;
     end
-end
+
+    always @(*) begin
+        if (switchValue != previousValue) begin
+            previousValue <= switchValue;
+            changeSignal_tmp <= 1;
+        end
+        else begin
+            changeSignal_tmp <= 0;
+        end
+    end
 
 assign changeSignal = changeSignal_tmp;
 

@@ -125,6 +125,12 @@ always @(*) begin
                 end
                 // Draw player markers based on game state
                 else if (cell_x >= 0 && cell_x < 5 && cell_y >= 0 && cell_y < 5) begin
+                    if (cell_x == cursor_col && cell_y == cursor_row) begin
+                        // color background of selected cell light blue
+                        red = 3'b001;
+                        green = 3'b100;
+                        blue = 3'b111;
+                    end
                     if (game_state[cell_y][cell_x] == 1) begin
                         // Draw a filled-in black circle for Player 1
                         integer center_x = hbp + cell_x * CELL_WIDTH + CELL_WIDTH / 2;

@@ -31,9 +31,43 @@ module box_selector(
     reg [2:0] cur_box_row;
     reg [2:0] cur_box_col;
 
-    // TODO: Implement navigation on 5x5 grid
-    // btnL, btnR, btnU, btnD are movement inputs
-    // box_row, box_col indicate current selected box
-    // generate next coordinates based on current coordinates + direction
+    initial begin
+        cur_box_row <= 0;
+        cur_box_col <= 0;
+    end
+
+    always @(*) begin
+        if (btnL) begin
+            if (cur_box_col == 0) begin
+                cur_box_col <= 4;
+            end else begin
+                cur_box_col <= cur_box_col - 1;
+            end
+        end
+        else if (btnR) begin
+            if (cur_box_col == 4) begin
+                cur_box_col <= 0;
+            end else begin
+                cur_box_col <= cur_box_col + 1;
+            end
+        end
+        else if (btnU) begin
+            if (cur_box_row == 0) begin
+                cur_box_row <= 4;
+            end else begin
+                cur_box_row <= cur_box_row - 1;
+            end
+        end
+        else if (btnD) begin
+            if (cur_box_row == 4) begin
+                cur_box_row <= 0;
+            end else begin
+                cur_box_row <= cur_box_row + 1;
+            end
+        end
+    end
+
+    assign box_row = cur_box_row;
+    assign box_col = cur_box_col;
 
 endmodule

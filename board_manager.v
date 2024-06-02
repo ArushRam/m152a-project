@@ -31,14 +31,27 @@ module board_manager(
     reg [1:0] cur_board [0:4][0:4];
 
     initial begin
-        // TODO: set board to all 0s initially
+        // set board to all 0s initially
+        for (int i = 0; i < 5; i++) begin
+            for (int j = 0; j < 5; j++) begin
+                cur_board[i][j] <= 2b'0;
+            end
+        end
     end
 
     always @(*) begin
-
-        // TODO: set board to all 0s if resetGame
-        // TODO: if placeMarker is high, then set game_board[row][col] to playerId
-
+        if (resetGame) begin
+            // set board to all 0s if resetGame
+            for (int i = 0; i < 5; ++i) begin
+                for (int j = 0; j < 5; j++) begin
+                    cur_board[i][j] <= 2b'0;
+                end
+            end
+        end
+        else if (placeMarker) begin
+            // if placeMarker is high, then set game_board[row][col] to playerId
+            cur_board[selectedRow][selectedCol] <= playerId;
+        end
     end
 
     assign game_board = cur_board;

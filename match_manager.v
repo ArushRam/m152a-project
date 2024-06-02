@@ -35,9 +35,18 @@ initial begin
     player2_score <= 0;
 end
 
-// TODO: Initialize 7-segment display accepting scores, pass in player1_score and player2_score
-// maybe move the logic from digit_separator to our previous display file
+// separate score digits
+wire [3:0] player1_tens;
+wire [3:0] player1_ones;
+wire [3:0] player2_tens;
+wire [3:0] player2_ones;
+digit_separator sep_mins(player1_score, player1_tens, player1_ones);
+digit_separator sep_mins(player2_score, player2_tens, player2_ones);
 
+// render 7-segment display
+seg_display display_scores(clk_seg, player2_ones, player2_tens, player1_ones, player1_tens);
+
+// update scores
 always @(*) begin
     if (resetMatch) begin
         player1_score <= 0;
@@ -45,10 +54,18 @@ always @(*) begin
     end
     else begin
         if (gameFinished && lastWinner == 0) begin
-            player1_score <= player1_score + 1;
+            if (player1_score <= 99) begin
+                player1_score <= player1_score + 1;
+            end else begin
+                player1_score <= 0;
+            end
         end
         else if (gameFinished && lastWinner == 1) begin
-            player2_score <= player2_score + 1;
+            if (player2_score <= 99) begin
+                player2_score <= player2_score + 1;
+            end else begin
+                player2_score <= 0;
+            end
         end
     end
 end
