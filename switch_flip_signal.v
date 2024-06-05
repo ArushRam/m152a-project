@@ -21,9 +21,9 @@
 
 module switch_flip_signal(
     input wire switchValue,
+    input wire clk,
     output wire changeSignal
 );
-
     reg changeSignal_tmp;
     reg previousValue;
 
@@ -32,16 +32,19 @@ module switch_flip_signal(
         previousValue <= switchValue;
     end
 
+    // we need to separate updating
+    always @(posedge clk) begin
+        previousValue <= switchValue;
+    end
+
     always @(*) begin
         if (switchValue != previousValue) begin
-            previousValue <= switchValue;
-            changeSignal_tmp <= 1;
+            changeSignal_tmp = 1;
         end
         else begin
-            changeSignal_tmp <= 0;
+            changeSignal_tmp = 0;
         end
     end
 
-assign changeSignal = changeSignal_tmp;
-
+    assign changeSignal = changeSignal_tmp;
 endmodule
